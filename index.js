@@ -1,33 +1,30 @@
-module.exports = {
-  memorizeId: memoizeId(),
-  memorizeQuery: memoizeQuery()
-};
-
-
-function memoizeId(id) {
+window.memoize = (() => {
   let cache = {};
 
-  return function (id) {
-    if (id in cache) {
-      return cache[id];
-    } else {
-      return cache[id] = document.getElementById(id);
+  function memoizeId(id) {
+
+    return function (id) {
+      if (id in cache) {
+        return cache[id];
+      } else {
+        return cache[id] = document.getElementById(id);
+      }
+    }
+  };
+
+  function memoizeQuery(el) {
+
+    return function (el) {
+      if (el in cache) {
+        return cache[el];
+      } else {
+        return cache[el] = document.querySelector(el);
+      }
     }
   }
-};
 
-function memoizeQuery(el) {
-  let cache = {};
-
-  return function (el) {
-    if (el in cache) {
-      return cache[el];
-    } else {
-      return cache[el] = document.querySelectorAll(el);
-    }
-  }
-}
-
-
-
-
+  return {
+    memoizeId: memoizeId(),
+    memoizeQuery: memoizeQuery()
+  };
+})();
