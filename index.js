@@ -1,10 +1,10 @@
 module.exports = {
-  memorizeId: memorizeId(),
-  memorizeQuery: memorizeQuery()
+  memorizeId: memoizeId(),
+  memorizeQuery: memoizeQuery()
 };
 
 
-function memorizeId(id) {
+function memoizeId(id) {
   let cache = {};
 
   return function (id) {
@@ -16,7 +16,7 @@ function memorizeId(id) {
   }
 };
 
-function memorizeQuery(el) {
+function memoizeQuery(el) {
   let cache = {};
 
   return function (el) {
