@@ -9,10 +9,8 @@ function memorizeId(id) {
 
   return function (id) {
     if (id in cache) {
-      console.log('id exists');
       return cache[id];
     } else {
-      console.log('id does not exist, adding to cache!');
       return cache[id] = document.getElementById(id);
     }
   }
@@ -21,17 +19,15 @@ function memorizeId(id) {
 function memorizeQuery(el) {
   let cache = {};
 
-  return function (id) {
-    if (id in cache) {
-      console.log('id exists');
-      return cache[id];
+  return function (el) {
+    if (el in cache) {
+      return cache[el];
     } else {
-      console.log('id does not exist, adding to cache!');
-      return cache[id] = document.querySelectorAll(id);
+      return cache[el] = document.querySelectorAll(el);
     }
   }
 }
 
-console.log()
+
 
 
